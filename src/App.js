@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import { Button } from 'react-bootstrap';
+import { FaRegPaperPlane } from 'react-icons/fa'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div style={{position: 'fixed',
+      bottom: '20px',
+      right: '10px'}} className="App">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +21,8 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <Button className="rounded-circle" variant="primary"><FaRegPaperPlane /></Button>{' '}
     </div>
   );
 }
