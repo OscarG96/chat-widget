@@ -1,14 +1,17 @@
 import btn from './button/button.html'
+import './button/button.css'
 function app() {
     console.log('JS-Widget starting');
+    console.log('button', typeof btn);
     // var btn = document.createElement("BUTTON");   // Create a <button> element
-    document.body.appendChild(btn);
-    // btn.innerHTML = 'Click me!';
-    // var img = document.createElement("img")
-    // img.src = "https://media.geeksforgeeks.org/wp-content/uploads/20190529122828/bs21.png"
-    // img.alt = "charla"
-    // document.body.appendChild(btn);    
-    // document.body.appendChild(img)
+    let content = document.createElement('div')
+    content.innerHTML = btn
+    content.className = 'chat-widget'
+    document.body.appendChild(content);
+    
+    document.getElementById('myBtn').onclick = function(e){
+        alert('click');
+    }
 }
 
 app();

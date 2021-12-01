@@ -1,0 +1,25 @@
+button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+button img {
+    max-width: 100%;
+}
+
+.chat-widget {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
