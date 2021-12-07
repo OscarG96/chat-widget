@@ -1,4 +1,4 @@
-button {
+.button-widget {
     background-color: #04AA6D;
     border: none;
     color: white;
@@ -14,12 +14,6 @@ button {
     cursor: pointer;
 }
 
-button img {
+.button-widget img {
     max-width: 100%;
-}
-
-.chat-widget {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
 }
