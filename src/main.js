@@ -2,12 +2,11 @@
 import chatWindow from './ChatWindow/chatwindow.html';
 import './ChatWindow/chatwindow.css'
 import btn from './button/button.html'
-
+import { handleSubmitMessage } from './chat-socket.js'
+ 
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
     function app() {
-        const chatBtn = document.querySelector('.chat-btn');
-        const popup = document.querySelector('.chat-popup');
     
         console.log('JS-Widget starting');
     
@@ -17,31 +16,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
             ${btn}
         `
         document.body.appendChild(content);
-        console.log(chatBtn)
-        // btn.addEventListener('click', ()=>{
-        //     console.log('btn clicked')
-        //     popup.classList.toggle('show');
-        // })
+
         document.getElementById('btnToggleWidget').onclick = function(e){
-            console.log('btn clicked')
             // popup.classList.toggle('show');
-            document.getElementsByClassName('chat-popup').className += 'show'
-            
+            let chatpopup = document.getElementsByClassName('chat-popup')[0]
+            if (chatpopup.classList.contains('show')) {
+                chatpopup.classList.remove('show')
+            } else {
+                chatpopup.classList.add('show')
+            }
         }
         
         // send msg 
-        // submitBtn.addEventListener('click', ()=>{
-        //     let userInput = inputElm.value;
+        document.getElementsByClassName('submit')[0].onclick = (e) => {
+            let userInput = document.getElementById('userMsgInput')
         
-        //     let temp = `<div class="out-msg">
-        //     <span class="my-msg">${userInput}</span>
-        //     <img src="img/me.jpg" class="avatar">
-        //     </div>`;
+            let temp = `<div class="out-msg">
+            <span class="my-msg">${userInput.value}</span>
+            <img src="img/me.jpg" class="avatar">
+            </div>`;
+            
+            handleSubmitMessage(userInput.value)
+            document.getElementById('chatAreaWidget').insertAdjacentHTML("beforeend", temp);
+            // inputElm.value = '';
+            userInput.value = '';
+
+            
         
-        //     chatArea.insertAdjacentHTML("beforeend", temp);
-        //     inputElm.value = '';
-        
-        // })
+        }
     }
     
     app();
