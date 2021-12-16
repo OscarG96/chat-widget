@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../widget.api"
+		},
+		{
+			"path": "../../../widget.admin.web"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}

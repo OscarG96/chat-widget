@@ -26,10 +26,7 @@ module.exports = (env) => {
             },
           },
         },
-        {
-          test: /\.js$/,
-          loader: "webpack-remove-debug", // remove "debug" package
-        },
+        
       ]
      }
   }]

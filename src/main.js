@@ -3,6 +3,7 @@ import chatWindow from './ChatWindow/chatwindow.html';
 import './ChatWindow/chatwindow.css'
 import btn from './button/button.html'
 import { handleSubmitMessage } from './chat-socket.js'
+
  
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
