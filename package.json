@@ -25,5 +25,7 @@
     "webpack-dev-server": "^4.5.0",
     "webpack-remove-debug": "^0.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
 }

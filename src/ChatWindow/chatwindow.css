@@ -137,6 +137,14 @@ input[type="text"]{
     height: 2.2rem;
 }
 
+input[type="email"]{
+    width:100%;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    border-radius: 5px;
+    height: 2.2rem;
+}
+
 #emoji-btn{
     position: absolute;
     font-size: 1.2rem;
@@ -173,6 +181,10 @@ input[type="text"]{
     border-radius: 25px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
     word-break: break-all;
+}
+
+.hide{
+    display: none;
 }
 
 
