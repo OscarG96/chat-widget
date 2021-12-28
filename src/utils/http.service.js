@@ -9,3 +9,11 @@ export function addNewUser(username, useremail) {
     }).then(() => console.log('user created'), (message) => console.warn('something failed', message))
     .catch(error => console.error(error))
 }
+
+export function sendMessage(msg, userEmail) {
+    axios.post(`${URL}/message/save`, {
+        msg,
+        email: userEmail
+    }).then(() => console.log('message send'), (message) => console.warn('something failed', message))
+    .catch(error => console.error(error))
+}
