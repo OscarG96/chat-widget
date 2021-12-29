@@ -5,13 +5,18 @@ import btn from './button/button.html'
 import { handleSubmitMessage } from './chat-socket.js'
 import { getCookie, setCookie } from './utils/cookies.js'
 import { addNewUser } from './utils/http.service.js'
+import { v4 as uuidv4 } from 'uuid';
+const { io } = require("socket.io-client");
 
- 
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
     function app() {
-
+        
+        const socket = io('127.0.0.1:3000')
         const user = false
+        const uuid = getCookie('uuid') || null
     
         console.log('JS-Widget starting');
     
@@ -22,13 +27,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         `
         document.body.appendChild(content);
 
-        console.log(getCookie('widgetusername'))
+        
         const checkUser = () => {
             const username = getCookie('widgetusername')
             const useremail = getCookie('widgetuseremail')
             if (username && useremail) {
                 document.getElementById('chatAreaWidget').classList.remove('hide')
                 document.getElementById('userDataArea').classList.add('hide')
+            }
+            if (!uuid) {
+                uuid = uuidv4()
+                setCookie(uuid)
             }
         }
         checkUser()
@@ -61,15 +70,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <span class="my-msg">${userInput.value}</span>
             <img src="img/me.jpg" class="avatar">
             </div>`;
-            
-            handleSubmitMessage(userInput.value)
+            let userEmail = getCookie('widgetuseremail')
+            let userName = getCookie('widgetusername')
+            handleSubmitMessage(userInput.value, userEmail, userName, uuid)
             document.getElementById('chatAreaWidget').insertAdjacentHTML("beforeend", temp);
             // inputElm.value = '';
             userInput.value = '';
-
-            
-        
         }
+
+        socket.on(`messageFromAgent-${uuid}`, (message) => {
+            console.log('message from agent', message)
+        })
     }
     
     app();
