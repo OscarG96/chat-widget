@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         const socket = io('127.0.0.1:3000')
         const user = false
-        const uuid = getCookie('uuid') || null
+        let uuid = getCookie('uuid') || null
     
         console.log('JS-Widget starting');
     
@@ -36,8 +36,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById('userDataArea').classList.add('hide')
             }
             if (!uuid) {
+                
+                console.log('uuid is null')
                 uuid = uuidv4()
-                setCookie(uuid)
+                setCookie('uuid', uuid)
             }
         }
         checkUser()
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
             let temp = `<div class="out-msg">
             <span class="my-msg">${userInput.value}</span>
-            <img src="img/me.jpg" class="avatar">
+            
             </div>`;
             let userEmail = getCookie('widgetuseremail')
             let userName = getCookie('widgetusername')
@@ -78,8 +80,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             userInput.value = '';
         }
 
+        const appendMessageToChat = (message) => {
+            let temp = `<div class="income-msg">
+            <span class="msg">${message}</span>
+            
+            </div>`;
+            document.getElementById('chatAreaWidget').insertAdjacentHTML("beforeend", temp);
+        } 
+
         socket.on(`messageFromAgent-${uuid}`, (message) => {
             console.log('message from agent', message)
+            appendMessageToChat(message);
         })
     }
     
