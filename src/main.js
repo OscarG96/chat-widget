@@ -2,7 +2,6 @@
 import chatWindow from './ChatWindow/chatwindow.html';
 import './ChatWindow/chatwindow.css'
 import btn from './button/button.html'
-import { handleSubmitMessage } from './chat-socket.js'
 import { getCookie, setCookie } from './utils/cookies.js'
 import { addNewUser } from './utils/http.service.js'
 import { v4 as uuidv4 } from 'uuid';
@@ -92,6 +91,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.log('message from agent', message)
             appendMessageToChat(message);
         })
+
+        const handleSubmitMessage = (message, email, username, uuid) => {
+            console.log('handle submit message', message)
+            // message.uid = "khz0OrRFMxce4SucrWDnn06cBiD2"
+            socket.emit('message', { message, email, username, uuid, agent:  "khz0OrRFMxce4SucrWDnn06cBiD2" })
+        }
     }
     
     app();
