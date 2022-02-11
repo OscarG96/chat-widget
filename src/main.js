@@ -94,9 +94,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         const handleSubmitMessage = (message, email, username, uuid) => {
             console.log('handle submit message', message)
-            // message.uid = "khz0OrRFMxce4SucrWDnn06cBiD2"
-            socket.emit('message', { message, email, username, uuid, agent:  "khz0OrRFMxce4SucrWDnn06cBiD2" })
+            socket.emit('message', { message, email, username, uuid, agent:  '' })
         }
+
+        socket.on('message', (data) => {
+            console.log('data from sever', data)
+        })
     }
     
     app();
