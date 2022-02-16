@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             </div>`;
             let userEmail = getCookie('widgetuseremail')
             let userName = getCookie('widgetusername')
-            handleSubmitMessage(userInput.value, userEmail, userName, uuid)
+            const agent = getCookie('agent')
+            handleSubmitMessage(userInput.value, userEmail, userName, uuid, agent)
             document.getElementById('chatAreaWidget').insertAdjacentHTML("beforeend", temp);
             // inputElm.value = '';
             userInput.value = '';
@@ -92,13 +93,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             appendMessageToChat(message);
         })
 
-        const handleSubmitMessage = (message, email, username, uuid) => {
+        const handleSubmitMessage = (message, email, username, uuid, agent = '') => {
             console.log('handle submit message', message)
-            socket.emit('message', { message, email, username, uuid, agent:  '' })
+            socket.emit('message', { message, email, username, uuid, agent })
         }
 
-        socket.on('message', (data) => {
+        socket.on(`agent-assigned-${uuid}`, (data) => {
             console.log('data from sever', data)
+            setCookie('agent', data.agent, 1)
         })
     }
     
