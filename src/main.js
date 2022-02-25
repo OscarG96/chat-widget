@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         const handleSubmitMessage = (message, email, username, uuid, agent = '') => {
             console.log('handle submit message', message)
-            socket.emit('message', { message, email, username, uuid, agent })
+            const date = new Date()
+            socket.emit('message', { message, email, username, uuid, agent, date })
         }
 
         socket.on(`agent-assigned-${uuid}`, (data) => {
